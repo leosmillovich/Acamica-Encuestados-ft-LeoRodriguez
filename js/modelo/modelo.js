@@ -13,17 +13,17 @@ var Modelo = function () {
 Modelo.prototype = {
   //se obtiene el id más grande asignado a una pregunta
   obtenerUltimoId: function () {
-    var id;
-    var ultimoValorId = this.preguntas.length;
+    let id;
+    let ultimoValorId = this.preguntas.length;
     ultimoValorId > 0 ? id = ultimoValorId : id = 0;
     return id;
   },
 
   //se agrega una pregunta dado un nombre y sus respuestas
   agregarPregunta: function (nombre, respuestas) {
-    var id = this.obtenerUltimoId();
+    let id = this.obtenerUltimoId();
     id++;
-    var nuevaPregunta = {
+    let nuevaPregunta = {
       'textoPregunta': nombre,
       'id': id,
       'cantidadPorRespuesta': respuestas
@@ -34,14 +34,14 @@ Modelo.prototype = {
   },
 
   borrarPregunta: function (id) {
-    let preguntaBuscada = this.preguntas.find((pregunta) => pregunta.id == id);
-    let indexId = this.preguntas.indexOf(preguntaBuscada);
-    this.preguntas.splice(indexId, 1);
+    //se filtar  y retorna las preguntas que no son iguales al id pasado por parametro
+    this.preguntas = this.preguntas.filter((pregunta) => pregunta.id !== id)
     this.preguntaEliminada.notificar();
-    return this.preguntas;
   },
 
-  //se guardan las preguntas
-  guardar: function () {
+  votarRespuesta: function (){
+    
   },
+  //se guardan las preguntas
+  guardar: function () {},
 };

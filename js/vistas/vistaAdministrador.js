@@ -23,10 +23,9 @@ VistaAdministrador.prototype = {
   //lista
   inicializar: function () {
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
-    validacionDeFormulario();
-    //paso 1
     this.reconstruirLista();
     this.configuracionDeBotones();
+    validacionDeFormulario();
   },
 
   construirElementoPregunta: function (pregunta) {
@@ -69,18 +68,24 @@ VistaAdministrador.prototype = {
       $('[name="option[]"]').each(function () {
         var respuesta = $(this).val();
         var cantVotos = 0;
-        var nuevaRespuesta = { 'textoRespuesta': respuesta, 'cantidad': cantVotos };
+        //validar que el campo no este vacio
+        var nuevaRespuesta = {
+          'textoRespuesta': respuesta,
+          'cantidad': cantVotos
+        };
         respuestas.push(nuevaRespuesta);
+
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
     });
+
     //agrego el evento para el boton borrar pregunta 
     e.botonBorrarPregunta.click(function () {
       var id = parseInt($('.list-group-item.active').attr('id'));
-      console.log(id)
       contexto.controlador.borrarPregunta(id);
     });
+
 
     //asociar el resto de los botones a eventos
   },
