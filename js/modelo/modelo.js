@@ -8,6 +8,8 @@ var Modelo = function () {
   //inicializacion de eventos
   this.preguntaAgregada = new Evento(this);
   this.preguntaEliminada = new Evento(this);
+  this.preguntasBorradas = new Evento(this);
+  this.preguntaEditada = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -35,13 +37,23 @@ Modelo.prototype = {
 
   borrarPregunta: function (id) {
     //se filtar  y retorna las preguntas que no son iguales al id pasado por parametro
-    this.preguntas = this.preguntas.filter((pregunta) => pregunta.id !== id)
+    this.preguntas = this.preguntas.filter((pregunta) => pregunta.id !== id);
+    this.guardar();
     this.preguntaEliminada.notificar();
   },
 
-  votarRespuesta: function (){
-    
+  borrarTodo: function () {
+    this.preguntas = [];
+    this.guardar();
+    this.preguntasBorradas.notificar();
   },
+
   //se guardan las preguntas
-  guardar: function () {},
+  guardar: function () {
+    //   localStorage.setItem('preguntas', JSON.stringify(this.preguntas));
+    //   let preguntasString = localStorage.getItem('preguntas');
+    //   let preguntasRecuperadas = JSON.parse(preguntasString);
+    //   return preguntasRecuperadas;
+  }
+
 };
