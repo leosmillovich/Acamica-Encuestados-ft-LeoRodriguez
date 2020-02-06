@@ -19,10 +19,10 @@ var VistaAdministrador = function (modelo, controlador, elementos) {
   this.modelo.preguntasBorradas.suscribir(function () {
     contexto.reconstruirLista();
   });
-
+  
   this.modelo.preguntaEditada.suscribir(function () {
     contexto.reconstruirLista();
-  })
+  });
 
 };
 
@@ -75,33 +75,34 @@ VistaAdministrador.prototype = {
       $('[name="option[]"]').each(function () {
         var respuesta = $(this).val();
         var cantVotos = 0;
-        //validar que el campo no este vacio
         var nuevaRespuesta = {
           'textoRespuesta': respuesta,
           'cantidad': cantVotos
         };
         respuestas.push(nuevaRespuesta);
-
-      })
+      });
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
     });
 
-    //agrego el evento para el boton borrar pregunta 
     e.botonBorrarPregunta.click(function () {
       let id = parseInt($('.list-group-item.active').attr('id'));
       contexto.controlador.borrarPregunta(id);
     });
 
     e.borrarTodo.click(function () {
-      // $('.list-group').empty();
+
       contexto.controlador.borrarTodo();
     });
 
     e.botonEditarPregunta.click(function () {
       let id = parseInt($('.list-group-item.active').attr('id'));
-      let editada = prompt("Modifique la pregunta: ");
-      contexto.controlador.editarPregunta(id, editada);
+      if (id) {
+        let editada = prompt("Modifique la pregunta: ");
+        contexto.controlador.editarPregunta(id, editada);
+      } else {
+        alert("Escoja una pregunta para editar");
+      }
     });
   },
 

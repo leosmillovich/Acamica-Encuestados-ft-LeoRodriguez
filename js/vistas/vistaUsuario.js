@@ -11,6 +11,20 @@ var VistaUsuario = function (modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function () {
     contexto.reconstruirLista();
   });
+
+  //agregado por mi
+  this.modelo.preguntaEliminada.suscribir(function () {
+    contexto.reconstruirLista();
+  });
+
+  this.modelo.preguntasBorradas.suscribir(function () {
+    contexto.reconstruirLista();
+  });
+
+  this.modelo.preguntaEditada.suscribir(function () {
+    contexto.reconstruirLista();
+  });
+
 };
 
 VistaUsuario.prototype = {
@@ -50,7 +64,15 @@ VistaUsuario.prototype = {
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function (clave) {
       //completar
+      // listaPreguntas.append($('<div>', {
+      //   value: clave.textoPregunta,
+      //   text: clave.textoPregunta,
+      //   id: clave.id,
+      // }));
       //agregar a listaPreguntas un elemento div con valor "clave.textoPregunta", texto "clave.textoPregunta", id "clave.id"
+      // listaPreguntas = $('<div></div>');
+      // listaPreguntas.attr('id', clave.id);
+      // listaPreguntas.text('clave.textoPregunta');
       var respuestas = clave.cantidadPorRespuesta;
       contexto.mostrarRespuestas(listaPreguntas, respuestas, clave);
     })
