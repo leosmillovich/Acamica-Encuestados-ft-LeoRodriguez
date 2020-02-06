@@ -48,12 +48,23 @@ Modelo.prototype = {
     this.preguntasBorradas.notificar();
   },
 
+  editarPregunta: function (id, editada) {
+    let preguntaBuscada = this.preguntas.find((pregunta) => pregunta.id == id);
+    preguntaBuscada.textoPregunta = editada;
+    this.guardar();
+    this.preguntaEditada.notificar();
+  },
   //se guardan las preguntas
   guardar: function () {
-    //   localStorage.setItem('preguntas', JSON.stringify(this.preguntas));
-    //   let preguntasString = localStorage.getItem('preguntas');
-    //   let preguntasRecuperadas = JSON.parse(preguntasString);
-    //   return preguntasRecuperadas;
-  }
+    localStorage.setItem('preguntas', JSON.stringify(this.preguntas));
+    // let preguntasString = localStorage.getItem('preguntas');
+    // let preguntasRecuperadas = JSON.parse(preguntasString);
+    // return preguntasRecuperadas;
+  },
 
+  recuperarDatos: function () {
+    let preguntasString = localStorage.getItem('preguntas');
+    let preguntasRecuperadas = JSON.parse(preguntasString);
+    this.preguntas = preguntasRecuperadas;
+  }
 };

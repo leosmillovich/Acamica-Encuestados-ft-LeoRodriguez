@@ -16,6 +16,14 @@ var VistaAdministrador = function (modelo, controlador, elementos) {
     contexto.reconstruirLista();
   });
 
+  this.modelo.preguntasBorradas.suscribir(function () {
+    contexto.reconstruirLista();
+  });
+
+  this.modelo.preguntaEditada.suscribir(function () {
+    contexto.reconstruirLista();
+  })
+
 };
 
 
@@ -23,6 +31,7 @@ VistaAdministrador.prototype = {
   //lista
   inicializar: function () {
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
+    this.modelo.recuperarDatos();
     this.reconstruirLista();
     this.configuracionDeBotones();
     validacionDeFormulario();
@@ -80,17 +89,20 @@ VistaAdministrador.prototype = {
 
     //agrego el evento para el boton borrar pregunta 
     e.botonBorrarPregunta.click(function () {
-      var id = parseInt($('.list-group-item.active').attr('id'));
+      let id = parseInt($('.list-group-item.active').attr('id'));
       contexto.controlador.borrarPregunta(id);
     });
 
     e.borrarTodo.click(function () {
-      $('.list-group').empty();
+      // $('.list-group').empty();
       contexto.controlador.borrarTodo();
     });
-    // e.botonEditarPregunta.click(function (){
 
-    // })
+    e.botonEditarPregunta.click(function () {
+      let id = parseInt($('.list-group-item.active').attr('id'));
+      let editada = prompt("Modifique la pregunta: ");
+      contexto.controlador.editarPregunta(id, editada);
+    });
   },
 
   limpiarFormulario: function () {
