@@ -10,6 +10,7 @@ var Modelo = function () {
   this.preguntaEliminada = new Evento(this);
   this.preguntasBorradas = new Evento(this);
   this.preguntaEditada = new Evento(this);
+  this.respuestaVotada = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -66,5 +67,15 @@ Modelo.prototype = {
     let preguntasString = localStorage.getItem('preguntas');
     let preguntasRecuperadas = JSON.parse(preguntasString);
     this.preguntas = preguntasRecuperadas;
-  }
+  },
+
+    agregarVoto: function (nombrePregunta, respuestaSeleccionada) {
+      let votadas = this.preguntas.find((pregunta) => pregunta.textoPregunta === nombrePregunta);
+      console.log(votadas);
+      let votada = votadas.cantidadPorRespuesta.find((votada) => votada.textoRespuesta === respuestaSeleccionada);
+      console.log(votada)
+      votada.cantidad++;
+      this.guardar();
+      this.respuestaVotada.notificar();
+    }
 };

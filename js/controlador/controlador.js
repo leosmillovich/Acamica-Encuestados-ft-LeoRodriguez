@@ -9,7 +9,7 @@ Controlador.prototype = {
   agregarPregunta: function (pregunta, respuestas) {
     this.modelo.agregarPregunta(pregunta, respuestas);
   },
-  
+
   borrarPregunta: function (id) {
     this.modelo.borrarPregunta(id);
   },
@@ -20,6 +20,10 @@ Controlador.prototype = {
 
   editarPregunta: function (id, editada) {
     this.modelo.editarPregunta(id, editada);
+  },
+
+  agregarVoto: function (nombrePregunta, respuestaSeleccionada) {
+    this.modelo.agregarVoto(nombrePregunta, respuestaSeleccionada);
   }
 
 };
