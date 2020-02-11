@@ -69,13 +69,11 @@ Modelo.prototype = {
     this.preguntas = preguntasRecuperadas;
   },
 
-    agregarVoto: function (nombrePregunta, respuestaSeleccionada) {
-      let votadas = this.preguntas.find((pregunta) => pregunta.textoPregunta === nombrePregunta);
-      console.log(votadas);
-      let votada = votadas.cantidadPorRespuesta.find((votada) => votada.textoRespuesta === respuestaSeleccionada);
-      console.log(votada)
-      votada.cantidad++;
-      this.guardar();
-      this.respuestaVotada.notificar();
-    }
+  agregarVoto: function (nombrePregunta, respuestaSeleccionada) {
+    let votadas = this.preguntas.find((pregunta) => pregunta.textoPregunta === nombrePregunta);
+    let votada = votadas.cantidadPorRespuesta.find((votada) => votada.textoRespuesta === respuestaSeleccionada);
+    votada.cantidad++;
+    this.guardar();
+    this.respuestaVotada.notificar();
+  }
 };

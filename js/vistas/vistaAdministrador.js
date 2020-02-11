@@ -24,9 +24,6 @@ var VistaAdministrador = function (modelo, controlador, elementos) {
     contexto.reconstruirLista();
   });
 
-  this.modelo.respuestaVotada.suscribir(function () {
-    contexto.reconstruirLista();
-  });
 
 };
 
@@ -85,6 +82,7 @@ VistaAdministrador.prototype = {
         };
         respuestas.push(nuevaRespuesta);
       });
+      respuestas.pop();//saca el bug del ultimo radio vacio
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
     });
