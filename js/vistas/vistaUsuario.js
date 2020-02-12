@@ -48,7 +48,6 @@ VistaUsuario.prototype = {
   //reconstruccion de los graficos de torta
   reconstruirGrafico: function () {
     var contexto = this;
-    //obtiene las preguntas del local storage
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function (clave) {
       var listaParaGrafico = [[clave.textoPregunta, 'Cantidad']];
@@ -67,8 +66,6 @@ VistaUsuario.prototype = {
     var contexto = this;
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function (clave) {
-      //completar
-      //agregar a listaPreguntas un elemento div con valor "clave.textoPregunta", texto "clave.textoPregunta", id "clave.id"
       listaPreguntas.append($('<div>', {
         value: clave.textoPregunta,
         text: clave.textoPregunta,

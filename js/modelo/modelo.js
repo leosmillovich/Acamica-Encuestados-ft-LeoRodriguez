@@ -58,11 +58,8 @@ Modelo.prototype = {
   //se guardan las preguntas
   guardar: function () {
     localStorage.setItem('preguntas', JSON.stringify(this.preguntas));
-    // let preguntasString = localStorage.getItem('preguntas');
-    // let preguntasRecuperadas = JSON.parse(preguntasString);
-    // return preguntasRecuperadas;
   },
-
+  //se recuperan los datos
   recuperarDatos: function () {
     let preguntasString = localStorage.getItem('preguntas');
     let preguntasRecuperadas = JSON.parse(preguntasString);
